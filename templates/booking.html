@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Booking List</title>
+{% endblock %}
+
+{% block content %}
+<style>
+  /* CSS Styles */
+  h1 {
+    color: blue;
+    font-size: 24px;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  .container {
+    text-align: center; /* Aligns content to the center */
+    max-width: 50%; /* Adjusts the maximum width to 50% */
+    margin: 0 auto; /* Centers the container horizontally */
+  }
+
+  form {
+    margin-top: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  select {
+    width: 100%; /* Adjusts the width to 100% */
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button[type="submit"] {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* Add more styles as needed */
+</style>
+
+<div class="container">
+
+  <ul>
+    {% for booking in bookings %}
+    <li>
+      Patient Name: {{ booking.patient_name }}<br>
+      Doctor: {{ booking.doctor.name }}<br>
+      Patient Email: {{ booking.patient_email }}<br>
+      Department: {{ booking.department_name }}<br>
+      Appointment Date: {{ booking.appointment_date }}<br>
+      Appointment Time: {{ booking.appointment_time }}<br>
+      Booked On: {{ booking.booked_on }}
+    </li>
+    <br>
+    {% endfor %}
+  </ul>
+
+  <h2>Create a Booking</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="id_patient_name">Patient Name:</label>
+    {{ form.patient_name }}
+    <label for="id_doctor">Doctor:</label>
+    {{ form.doctor }}
+    <label for="id_patient_email">Patient Email:</label>
+    {{ form.patient_email }}
+    <label for="id_department_name">Department:</label>
+    {{ form.department_name }}
+    <label for="id_appointment_date">Appointment Date:</label>
+    {{ form.appointment_date }}
+    <button type="submit">Submit</button>
+  </form>
+</div>
+{% endblock %}

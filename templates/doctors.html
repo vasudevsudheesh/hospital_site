@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Doctors</title>
+{% endblock %}
+
+{% block content %}
+<div style="background-color: lightblue; padding: 20px; text-align: center;">
+    <h1 style="color: navy; margin-bottom: 20px;">Doctors</h1>
+
+    {% for doctor in doctors %}
+    <div style="background-color: white; padding: 20px; margin-bottom: 20px; border: 2px solid navy; border-radius: 10px; text-align: center; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: navy;">{{ doctor.name }}</h2>
+        <p style="color: darkblue;"><strong>Department:</strong> {{ doctor.department.name }}</p>
+        <p style="color: darkgreen;"><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+        <img src="{{ doctor.image.url }}" alt="{{ doctor.name }} Image" style="width: 200px; border: 2px solid darkblue; border-radius: 5px;">
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
